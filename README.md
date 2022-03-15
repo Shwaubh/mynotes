@@ -1,4 +1,4 @@
-# mynotes
+# mynotes (django-react-app)
 
 Shwaubh/Django-React-Notes-App
 
