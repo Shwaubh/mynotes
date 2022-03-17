@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import ListItems from '../components/ListItems'
 
 const NotesListPage = () => {
 
@@ -10,20 +11,25 @@ const NotesListPage = () => {
 
     let [notes, setNotes] = useState([])
    
+    let getNotes = async () => {
+        let resp = await fetch(fullEndpointNotes)
+        resp = await resp.json()
+        setNotes(resp)
+     }
+
     useEffect(() => {
         getNotes()
-    }, [])
+    })
    
-    let getNotes = async () => {
-       let resp = await fetch(fullEndpointNotes)
-       resp = await resp.json()
-       console.log('Data: ',resp)
-       setNotes(resp)
-    }
+    
 
     return (
         <div>
-            notes
+            <div className='notes-list'>
+                { notes.map( (note, index) => ( 
+                        <ListItems key={index} note={note} />
+                        ))}
+            </div>
         </div>
     )
 }
